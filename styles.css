@@ -1,0 +1,45 @@
+h1 {
+  font-family: "Cormorant SC", serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 5px;
+}
+.subTitle {
+  font-family: "Cormorant SC", serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 2px;
+}
+.miniTitle {
+  font-family: "Cormorant SC", serif;
+  font-weight: 2 00;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+.clickMe {
+  font-family: "Cormorant SC", serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 1px;
+  color: #754e1a;
+}
+#infantryimg:hover .clickMe,
+#archerimg:hover .clickMe,
+#cavalryimg:hover .clickMe,
+#siegeimg:hover .clickMe {
+  color: #77b254;
+}
+
+img {
+  width: 5rem;
+  height: 5rem;
+}
+.woodBar {
+  background-color: #754e1a;
+}
+.foodBar {
+  background-color: #77b254;
+}
+.goldBar {
+  background-color: #f29f58;
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="border border-secondary-subtle m-3 p-3 rounded-2 shadow border-4"
+      >
+        <h1 class="text-center">Theria</h1>
+        <p class="text-center fs-2 subTitle">Troop Training Calculator</p>
+        <div class="container">
+          <div class="row flex-fill mx-2">
+            <h3 class="text-center mb-4 miniTitle">Calculate Troops:</h3>
+            <div class="container d-flex justify-content-around mb-3 flex-wrap">
+              <div class="stats">
+                <button type="button" class="btn btn-body" id="infantryimg">
+                  <img
+                    src="./images/infantry.png"
+                    alt="infantry"
+                    class="rounded-5"
+                  />
+                  <br />
+                  <p class="clickMe">Click Me!</p>
+                </button>
+              </div>
+              <div class="stats">
+                <button type="button" class="btn btn-body" id="archerimg">
+                  <img
+                    src="./images/archer.png"
+                    alt="archer"
+                    class="rounded-5"
+                  />
+                  <br />
+                  <p class="clickMe">Click Me!</p>
+                </button>
+              </div>
+              <div class="stats">
+                <button type="button" class="btn btn-body" id="cavalryimg">
+                  <img
+                    src="./images/cowboy.png"
+                    alt="cowboy"
+                    class="rounded-5"
+                  />
+                  <br />
+                  <p class="clickMe">Click Me!</p>
+                </button>
+              </div>
+              <div class="stats">
+                <button type="button" class="btn btn-body" id="siegeimg">
+                  <img
+                    src="./images/trebuchet.png"
+                    alt="trebuchet"
+                    class="rounded-5"
+                  />
+                  <br />
+                  <p class="clickMe">Click Me!</p>
+                </button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="troopType" class="form-label">Troop Type:</label>
+              <select
+                id="troopType"
+                class="form-select col-12 col-md-6"
+                aria-label="Default select example"
+              >
+                <option value="Infantry">Infantry</option>
+                <option value="Archers">Archer</option>
+                <option value="Cavalry">Cavalry</option>
+                <option value="Siege">Siege</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="troopTier" class="form-label">Troop Tier:</label>
+              <select
+                id="troopTier"
+                class="form-select col-12 col-md-6"
+                aria-label="Default select example"
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="numTroops" class="form-label"
+                >Number of Troops:</label
+              >
+              <input
+                type="number"
+                min="1"
+                class="form-control col-12 col-md-6"
+                id="numTroops"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="multiplier" class="form-label"
+                >Training Speed Multiplier:</label
+              >
+              <input
+                type="number"
+                min="1"
+                class="form-control col-12 col-md-6"
+                id="multiplier"
+              />
+            </div>
+
+            <div class="text-center">
+              <button class="btn btn-primary mt-3 w-50" id="calculate">
+                Calculate
+              </button>
+            </div>
+          </div>
+
+          <div class="row flex-fill mx-2 mt-5 rounded p-4 shadow">
+            <h3 class="text-center mb-4 text-success">Results</h3>
+            <div class="col text-center">
+              <p class="fw-bold fs-5">
+                Base Cost:
+                <span id="totalResourcesRequired" class="text-body-emphasis"
+                  >0</span
+                >
+              </p>
+              <p class="fw-bold fs-5">
+                Base Training Time:
+                <span id="baseTrainingTime" class="text-warning">0</span>
+              </p>
+              <p class="fw-bold fs-5">
+                Adjusted Training Time:
+                <span id="adjustedTrainingTime" class="text-success">0</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade container"
+      id="stats"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header bg-primary text-white">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Troop Stats</h1>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h3 class="text-center mb-4">
+              Troop Type: <span id="typeModal" class="fw-bold"></span>
+            </h3>
+
+            <div class="d-flex align-items-center justify-content-center mb-4">
+              <label for="troopTierModal" class="form-label me-3">Tier:</label>
+              <select
+                id="troopTierModal"
+                class="form-select w-auto"
+                aria-label="Troop Tier Selector"
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <p class="fs-5 text-center fw-bold mb-3">Cost Breakdown</p>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <span>Wood:</span>
+                  <span class="woodModalPercent">50</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-barWood bg-success woodBar"
+                    style="width: 6.25%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <span>Food:</span>
+                  <span class="foodModalPercent">100</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-barFood bg-warning foodBar"
+                    style="width: 6.25%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <span>Gold:</span>
+                  <span class="goldModalPercent">10</span>
+                </div>
+                <div class="progress">
+                  <div
+                    class="progress-barGold bg-danger goldBar"
+                    style="width: 1.25%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="submitModal">
+              Apply Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
