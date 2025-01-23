@@ -251,7 +251,80 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div
+        class="border border-secondary-subtle m-3 p-3 rounded-2 shadow border-4"
+      >
+        <h1 class="text-center">Hero Leveling Experience Calculator</h1>
+        <p class="text-center fs-2 subTitle">Calculate Experience Needed</p>
 
+        <div class="container">
+          <div class="row flex-fill mx-2">
+            <div class="mb-3">
+              <label for="startingLevel" class="form-label"
+                >Starting Level:</label
+              >
+              <input
+                type="number"
+                min="1"
+                max="10"
+                class="form-control col-12 col-md-6"
+                id="startingLevel"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="targetLevel" class="form-label">Target Level:</label>
+              <input
+                type="number"
+                min="1"
+                max="10"
+                class="form-control col-12 col-md-6"
+                id="targetLevel"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="heroType" class="form-label">Hero Type:</label>
+              <select
+                id="heroType"
+                class="form-select col-12 col-md-6"
+                aria-label="Default select example"
+              >
+                <option value="Legendary">Legendary</option>
+                <option value="Elite">Elite</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button class="btn btn-primary mt-3 w-50" id="calculateExperience">
+              Calculate
+            </button>
+          </div>
+          <div class="output">
+            <div class="row flex-fill mx-2 mt-5 rounded p-4 shadow">
+              <h3 class="text-center mb-4 text-success">Results</h3>
+              <div class="col text-center">
+                <p class="fw-bold fs-5">
+                  Experience Needed:
+                  <span id="totalExperience" class="text-body-emphasis">0</span>
+                </p>
+                <p class="fw-bol fs-5">
+                  Total Books Needed:
+                  <span id="totalBooks" class="text-warning">0</span>
+                  <img
+                    src="./images/book.png"
+                    alt="open-book"
+                    style="height: 30px; width: 30px"
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 

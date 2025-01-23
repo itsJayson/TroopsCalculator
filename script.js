@@ -461,3 +461,64 @@ openSiege.addEventListener("click", function () {
     }
   });
 });
+
+var legendaryExp = [0, 500, 1200, 2000, 3500, 6000, 10000, 15000, 23000, 35000];
+var eliteExp = [0, 250, 600, 1000, 1750, 3000, 5000, 7500, 11500, 17500];
+
+var expBook = 250;
+
+var startingLevel = document.getElementById("startingLevel");
+var targetLevel = document.getElementById("targetLevel");
+var heroType = document.getElementById("heroType");
+var calculateExperience = document.getElementById("calculateExperience");
+
+calculateExperience.addEventListener("click", function () {
+  var starting = parseInt(startingLevel.value);
+  var target = parseInt(targetLevel.value);
+  var hero = heroType.value;
+
+  if (starting < 0 || target < 0) {
+    alert("Starting Level is 1");
+    return;
+  }
+
+  if (starting >= target) {
+    alert("The Target Level must be higher!");
+    return;
+  }
+  if (starting === target) {
+    alert("The Level must not match!");
+    return;
+  }
+  if (target > 10 || starting > 10) {
+    alert("Max level is 10");
+    return;
+  }
+
+  if (starting === 0 || target === 0) {
+    alert("Must enter a value");
+    return;
+  }
+
+  if (hero === "Legendary") {
+    var totalExp = 0;
+    for (var i = starting; i < target; i++) {
+      totalExp += legendaryExp[i];
+    }
+  } else if (hero === "Elite") {
+    var totalExp = 0;
+    for (var i = starting; i < target; i++) {
+      totalExp += eliteExp[i];
+    }
+  } else {
+    alert("Try Again!");
+    return;
+  }
+
+  var expBooks = Math.round(totalExp / expBook);
+  var resultExp = totalExp.toLocaleString();
+  var resultBooks = expBooks.toLocaleString();
+
+  document.getElementById("totalExperience").innerHTML = resultExp;
+  document.getElementById("totalBooks").innerHTML = resultBooks + " Books";
+});

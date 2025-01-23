@@ -43,3 +43,16 @@ img {
 .goldBar {
   background-color: #f29f58;
 }
+
+label,
+option,
+select,
+#calculate,
+p,
+h3,
+#calculateExperience {
+  font-family: "Cormorant SC", serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 1px;
+}
